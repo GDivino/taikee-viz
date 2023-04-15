@@ -37,12 +37,12 @@ const dataFormatter = (number: number) => {
   return "P " + Intl.NumberFormat("ph").format(number).toString();
 };
 
-export default function TotalAssets() {
+export default function AssetsFlow() {
   return (
     <Card>
       <Title>Monthly Earnings and Spendings</Title>
       <AreaChart
-        className="total-assets-card"
+        className="h-72 mt-4"
         data={chartdata}
         index="date"
         categories={["Debit", "Credit"]}
