@@ -1,5 +1,5 @@
-function transformByBank(transactions: TransactionData, email: string): BankTransaction[] {
-    const result: BankTransaction[] = [];
+function transformByBank(transactions: TransactionData, email: string): BankInfo[] {
+    const result: BankInfo[] = [];
     const transactionList = transactions[email].transactions;
   
     for (const transactionId in transactionList) {
