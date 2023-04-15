@@ -18,11 +18,20 @@ interface TransactionData {
             amount: {
             num: string;
             };
+            metadata: {
+              bank_code: string;
+            },
             date: string;
             type: string;
         };
       };
   };
+}
+
+interface BankTransaction {
+  bank_code: string;
+  Debit: number;
+  Credit: number;
 }
 
 function transformTransactions(transactions: TransactionData, email: string): Transaction[] {
@@ -46,6 +55,32 @@ function transformTransactions(transactions: TransactionData, email: string): Tr
     const monthTransaction = result.find((t) => t.month === month)!;
     monthTransaction.Debit += debitAmount;
     monthTransaction.Credit += creditAmount;
+  }
+  return result;
+}
+
+function transformDaily(transactions: TransactionData, email: string): BankTransaction[] {
+  const result: BankTransaction[] = [];
+  const monthly = transactions[email].monthly;
+  const transactionList = transactions[email].transactions;
+
+  for (const transactionId in transactionList) {
+    const transaction = transactionList[transactionId];
+    const date = new Date(transaction.date);
+    // const month = date.toLocaleString('default', { month: 'long' });
+    var bank = transaction.metadata.bank_code;
+    // if (!result.find((t) => t.month === month)) {
+    //   result.push({
+    //     month,
+    //     Debit: 0,
+    //     Credit: parseFloat(monthly.income),
+    //   });
+    // }
+    const debitAmount = transaction.type === 'DEBIT' ? parseFloat(transaction.amount.num) : 0;
+    const creditAmount = transaction.type === 'CREDIT' ? parseFloat(transaction.amount.num) : 0;
+    const bankTransaction = result.find((t) => t.bank_code === bank)!;
+    bankTransaction.Debit += debitAmount;
+    bankTransaction.Credit += creditAmount;
   }
   return result;
 }
@@ -234,3 +269,4 @@ let customers = {
 }
 
 console.log(transformTransactions(customers, "basty@taikee.co"))
+console.log(transformDaily(customers, "basty@taikee.co"))
