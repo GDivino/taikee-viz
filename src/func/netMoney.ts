@@ -1,4 +1,4 @@
-function netMoney(transactions: TransactionData, email: string): NetMoney[] {
+export default function netMoney(transactions: TransactionData, email: string): NetMoney[] {
     const result: NetMoney[] = [];
     const monthly = transactions[email].monthly;
     const transactionList = transactions[email].transactions;

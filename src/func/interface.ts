@@ -5,9 +5,9 @@ interface Transaction {
 }
 
 interface MonthlyInfo {
-    expense: string;
-    goal: string;
-    income: string;
+    expense: number;
+    goal: number;
+    income: number;
 }
 
 interface BankInfo {
