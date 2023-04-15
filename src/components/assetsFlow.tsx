@@ -1,41 +1,14 @@
 import { Card, Title, AreaChart } from "@tremor/react";
-
-const chartdata = [
-  {
-    date: "Jan 22",
-    "Debit": 10000,
-    "Credit": 8000,
-  },
-  {
-    date: "Feb 22",
-    "Debit": 10000,
-    "Credit": 5000,
-  },
-  {
-    date: "Mar 22",
-    "Debit": 10000,
-    "Credit": 12000,
-  },
-  {
-    date: "Apr 22",
-    "Debit": 10000,
-    "Credit": 2000,
-  },
-  {
-    date: "May 22",
-    "Debit": 10000,
-    "Credit": 0,
-  },
-  {
-    date: "Jun 22",
-    "Debit": 10000,
-    "Credit": 0,
-  },
-];
+import getData from "../func/getData"
+import transformTransactions from "../func/transformData";
+import initiateBackup from "../func/getData";
 
 const dataFormatter = (number: number) => {
   return "P " + Intl.NumberFormat("ph").format(number).toString();
 };
+
+const data = await initiateBackup()
+const chartData = transformTransactions(data, "ceej@taikee,co")
 
 export default function AssetsFlow() {
   return (
@@ -43,7 +16,7 @@ export default function AssetsFlow() {
       <Title>Monthly Earnings and Spendings</Title>
       <AreaChart
         className="total-assets-card"
-        data={chartdata}
+        data={chartData}
         index="date"
         categories={["Debit", "Credit"]}
         colors={["red", "cyan"]}
