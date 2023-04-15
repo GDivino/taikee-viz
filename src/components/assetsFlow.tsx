@@ -17,7 +17,7 @@ export default function AssetsFlow() {
         // className="total-assets-card"
         className="h-72 mt-4"
         data={chartData}
-        index="date"
+        index="month"
         categories={["Debit", "Credit"]}
         colors={["red", "cyan"]}
         valueFormatter={dataFormatter}

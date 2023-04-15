@@ -1,11 +1,23 @@
-import netMoney from "./netMoney";
+import transformByBank from "./transformByBank";
 
-export default function timeLeftTilGoal(transactions: TransactionData, email: string) {
+export default function TimeLeftTilGoal(transactions: TransactionData, email: string) {
     const monthly = transactions[email].monthly;
 
-    const goal_left = monthly.goal - netMoney(transactions, email)[-1].totalNet;
+    const chartData = transformByBank(transactions, email);
 
-    const result = Math.ceil(goal_left / monthly.income)
+    var total = 0;
+    var total_spend = 0;
+    var count = 0;
+
+    chartData.forEach((x: BankInfo) => {
+        total += x.Net;
+        total_spend += x.Debit;
+        count ++;
+    })
+
+    const goal_left = monthly.goal - total;
+
+    const result = Math.ceil(goal_left / (monthly.income - (total_spend/count)))
 
     if (result <= 0)
         return "Achieved!"

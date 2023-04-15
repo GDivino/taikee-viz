@@ -1,5 +1,6 @@
-function transformByBank(transactions: TransactionData, email: string): BankInfo[] {
+export default function transformByBank(transactions: TransactionData, email: string): BankInfo[] {
     const result: BankInfo[] = [];
+    const monthly = transactions[email].monthly;
     const transactionList = transactions[email].transactions;
   
     for (const transactionId in transactionList) {
@@ -18,7 +19,8 @@ function transformByBank(transactions: TransactionData, email: string): BankInfo
       const bankTransaction = result.find((t) => t.bank_code === bank)!;
       bankTransaction.Debit += debitAmount;
       bankTransaction.Credit += creditAmount;
-      bankTransaction.Net += creditAmount - debitAmount;
+      bankTransaction.Net += (creditAmount - debitAmount);
+  
     }
     return result;
 }
