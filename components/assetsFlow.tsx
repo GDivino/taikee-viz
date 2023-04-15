@@ -42,7 +42,7 @@ export default function AssetsFlow() {
     <Card>
       <Title>Monthly Earnings and Spendings</Title>
       <AreaChart
-        className="h-72 mt-4"
+        className="total-assets-card"
         data={chartdata}
         index="date"
         categories={["Debit", "Credit"]}

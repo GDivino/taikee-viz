@@ -2,32 +2,32 @@ import { Card, Title, AreaChart } from "@tremor/react";
 
 const chartdata = [
   {
-    date: "Jan 22",
+    "date": "Jan 22",
     "Debit": 10000,
     "Credit": 8000,
   },
   {
-    date: "Feb 22",
+    "date": "Feb 22",
     "Debit": 10000,
     "Credit": 5000,
   },
   {
-    date: "Mar 22",
+    "date": "Mar 22",
     "Debit": 10000,
     "Credit": 12000,
   },
   {
-    date: "Apr 22",
+    "date": "Apr 22",
     "Debit": 10000,
     "Credit": 2000,
   },
   {
-    date: "May 22",
+    "date": "May 22",
     "Debit": 10000,
     "Credit": 0,
   },
   {
-    date: "Jun 22",
+    "date": "Jun 22",
     "Debit": 10000,
     "Credit": 0,
   },
