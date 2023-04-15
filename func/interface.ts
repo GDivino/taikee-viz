@@ -14,6 +14,7 @@ interface BankTransaction {
     bank_code: string;
     Debit: number;
     Credit: number;
+    Net: number;
 }
 
 interface TransactionData {

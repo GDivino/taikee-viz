@@ -11,6 +11,7 @@ function transformByBank(transactions: TransactionData, email: string): BankTran
           bank_code: bank,
           Debit: 0,
           Credit: 0,
+          Net: 0,
         });
       }
       const debitAmount = transaction.type === 'DEBIT' ? parseFloat(transaction.amount.num) : 0;
@@ -18,6 +19,7 @@ function transformByBank(transactions: TransactionData, email: string): BankTran
       const bankTransaction = result.find((t) => t.bank_code === bank)!;
       bankTransaction.Debit += debitAmount;
       bankTransaction.Credit += creditAmount;
+      bankTransaction.Net = creditAmount - debitAmount;
     }
     return result;
 }
