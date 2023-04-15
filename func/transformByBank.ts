@@ -19,7 +19,7 @@ function transformByBank(transactions: TransactionData, email: string): BankTran
       const bankTransaction = result.find((t) => t.bank_code === bank)!;
       bankTransaction.Debit += debitAmount;
       bankTransaction.Credit += creditAmount;
-      bankTransaction.Net = creditAmount - debitAmount;
+      bankTransaction.Net += creditAmount - debitAmount;
     }
     return result;
 }
