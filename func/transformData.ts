@@ -59,7 +59,7 @@ function transformTransactions(transactions: TransactionData, email: string): Tr
   return result;
 }
 
-function transformDaily(transactions: TransactionData, email: string): BankTransaction[] {
+function transformBank(transactions: TransactionData, email: string): BankTransaction[] {
   const result: BankTransaction[] = [];
   const monthly = transactions[email].monthly;
   const transactionList = transactions[email].transactions;
@@ -269,4 +269,4 @@ let customers = {
 }
 
 console.log(transformTransactions(customers, "basty@taikee.co"))
-console.log(transformDaily(customers, "basty@taikee.co"))
+console.log(transformBank(customers, "basty@taikee.co"))
