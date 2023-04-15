@@ -32,6 +32,7 @@ interface BankTransaction {
   bank_code: string;
   Debit: number;
   Credit: number;
+  Net: number;
 }
 
 function transformTransactions(transactions: TransactionData, email: string): Transaction[] {
@@ -81,6 +82,7 @@ function transformBank(transactions: TransactionData, email: string): BankTransa
     const bankTransaction = result.find((t) => t.bank_code === bank)!;
     bankTransaction.Debit += debitAmount;
     bankTransaction.Credit += creditAmount;
+    bankTransaction.Net = creditAmount - debitAmount;
   }
   return result;
 }
