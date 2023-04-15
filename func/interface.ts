@@ -10,11 +10,17 @@ interface MonthlyInfo {
     income: string;
 }
 
-interface BankTransaction {
+interface BankInfo {
     bank_code: string;
     Debit: number;
     Credit: number;
     Net: number;
+}
+
+interface NetMoney {
+    month: string;
+    totalNet: number;
+    netChange: number;
 }
 
 interface TransactionData {
