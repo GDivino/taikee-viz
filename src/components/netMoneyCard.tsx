@@ -1,24 +1,31 @@
 import { Card, Flex, Metric, BadgeDelta, Text } from "@tremor/react";
-import netMoney from "../func/netMoney";
+import transformByBank from "../func/transformByBank";
 import getData from "../func/getData";
 
 const data = await getData();
-const chartData = netMoney(data, "ceej@taikee,co");
+const chartData = transformByBank(data, "ceej@taikee,co");
+var total = 0;
+chartData.forEach((x: BankInfo) => {
+  total += x.Net;
+})
 
-export default function netMoneyCard() {
+const dataFormatter = (number: number) => {
+  return "PHP " + Intl.NumberFormat("ph").format(number).toString();
+};
+
+export default function NetMoneyCard() {
   return(
     <Card className="max-w-sm">
       <Flex justifyContent="between" alignItems="center">
         <Text>Net Money</Text>
-        <BadgeDelta
+        {/* <BadgeDelta
           deltaType="increase"
           isIncreasePositive={true}
           size="xs"
         >
-          {chartData[-1].month}
-        </BadgeDelta>
+        </BadgeDelta> */}
       </Flex>
-      <Metric>{chartData[-1].netChange}</Metric>
+      <Metric>{"PHP " + Intl.NumberFormat("ph").format(total).toString()}</Metric>
     </Card>
   )
 };

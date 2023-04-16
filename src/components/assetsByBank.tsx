@@ -1,12 +1,16 @@
 import { Card, Title, DonutChart } from "@tremor/react";
-import transformByBank from "../func/transformData";
+import transformByBank from "../func/transformByBank";
 import getData from "../func/getData";
 
 const valueFormatter = (number: number) =>
-  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
+  `PHP ${Intl.NumberFormat("ph").format(number).toString()}`;
 
 const data = await getData();
 const chartData = transformByBank(data, "ceej@taikee,co");
+// if (chartData[-1].Net <= 0) {
+  
+// }
+  
 
 export default function AssetsByBank() {
   return(
@@ -18,7 +22,8 @@ export default function AssetsByBank() {
         category="Net"
         index="bank_code"
         valueFormatter={valueFormatter}
-        colors={["cyan", "amber"]}
+        showLabel = {true}
+        // colors={["cyan", "amber"]}
       />
     </Card>
   )

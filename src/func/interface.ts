@@ -2,6 +2,7 @@ interface Transaction {
     month: string;
     Debit: number;
     Credit: number;
+    Net: number;
 }
 
 interface MonthlyInfo {
@@ -15,12 +16,6 @@ interface BankInfo {
     Debit: number;
     Credit: number;
     Net: number;
-}
-
-interface NetMoney {
-    month: string;
-    totalNet: number;
-    netChange: number;
 }
 
 interface TransactionData {

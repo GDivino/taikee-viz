@@ -11,7 +11,8 @@ export default function transformTransactions(transactions: TransactionData, ema
       result.push({
         month,
         Debit: 0,
-        Credit: parseFloat(monthly.income),
+        Credit: 0,
+        Net: 0,
       });
     }
     const debitAmount = transaction.type === 'DEBIT' ? parseFloat(transaction.amount.num) : 0;
