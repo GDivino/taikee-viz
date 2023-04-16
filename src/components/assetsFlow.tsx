@@ -7,15 +7,13 @@ const dataFormatter = (number: number) => {
 };
 
 const data = await getData();
-const chartData = transformTransactions(data, "ceej@taikee,co");
 
-export default function AssetsFlow() {
+export default function AssetsFlow(props: UserProp) {
+  const chartData = transformTransactions(data, props.user);
   return (
-    <Card>
+    <Card className="w-2/5">
       <Title>Monthly Earnings and Spendings</Title>
       <AreaChart
-        // className="total-assets-card"
-        className="h-72 mt-4"
         data={chartData}
         index="month"
         categories={["Debit", "Credit"]}

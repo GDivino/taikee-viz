@@ -18,6 +18,10 @@ interface BankInfo {
     Net: number;
 }
 
+interface UserProp {
+    user: string;
+}
+
 interface TransactionData {
     [key: string]: {
         monthly: MonthlyInfo;

@@ -3,19 +3,15 @@ import transformByBank from "../func/transformByBank";
 import getData from "../func/getData";
 
 const data = await getData();
-const chartData = transformByBank(data, "ceej@taikee,co");
-var total = 0;
-chartData.forEach((x: BankInfo) => {
-  total += x.Net;
-})
 
-const dataFormatter = (number: number) => {
-  return "PHP " + Intl.NumberFormat("ph").format(number).toString();
-};
-
-export default function NetMoneyCard() {
+export default function NetMoneyCard(props: UserProp) {
+  const chartData = transformByBank(data, props.user);
+  var total = 0;
+  chartData.forEach((x: BankInfo) => {
+    total += x.Net;
+  })
   return(
-    <Card className="max-w-sm">
+    <Card className="w-2/5" decoration="top" decorationColor="indigo">
       <Flex justifyContent="between" alignItems="center">
         <Text>Net Money</Text>
         {/* <BadgeDelta

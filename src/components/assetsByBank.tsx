@@ -6,15 +6,15 @@ const valueFormatter = (number: number) =>
   `PHP ${Intl.NumberFormat("ph").format(number).toString()}`;
 
 const data = await getData();
-const chartData = transformByBank(data, "ceej@taikee,co");
 // if (chartData[-1].Net <= 0) {
   
 // }
   
 
-export default function AssetsByBank() {
+export default function AssetsByBank(props: UserProp) {
+  const chartData = transformByBank(data, props.user);
   return(
-    <Card className="max-w-lg">
+    <Card className="w-2/5">
       <Title>Assets by Bank</Title>
       <DonutChart
         className="mt-6"
