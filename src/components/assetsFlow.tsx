@@ -19,7 +19,7 @@ export default function AssetsFlow(props: UserProp) {
         index="month"
         categories={["Debit", "Credit", "Net"]}
         colors={["red", "green", "cyan"]}
-        showLegend = {false}
+        showLegend = {true}
         valueFormatter={dataFormatter}
       />
     </Card>
