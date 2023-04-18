@@ -18,6 +18,13 @@ interface BankInfo {
     Net: number;
 }
 
+interface GoalInfo {
+    current: number;
+    goal: number;
+    time_left: number;
+    progress: number;
+}
+
 interface UserProp {
     user: string;
 }

@@ -1,7 +1,8 @@
 import transformByBank from "./transformByBank";
 
-export default function TimeLeftTilGoal(transactions: TransactionData, email: string) {
+export default function TimeLeftTilGoal(transactions: TransactionData, email: string): GoalInfo[] {
     const monthly = transactions[email].monthly;
+    const output: GoalInfo[] = [];
 
     const chartData = transformByBank(transactions, email);
 
@@ -19,8 +20,15 @@ export default function TimeLeftTilGoal(transactions: TransactionData, email: st
 
     const result = Math.ceil(goal_left / (monthly.income - (total_spend/count)))
 
-    if (result <= 0)
-        return "Achieved!"
-    else if (result > 0)
-        return result;
+    output.push({
+        current: total,
+        goal: monthly.goal,
+        time_left: result,
+        progress: 100 - (goal_left/monthly.goal)*100,
+    })
+    // if (result <= 0)
+    //     return "Goal Achieved!"
+    // else if (result > 0)
+    //     return result;
+    return output
   }

@@ -3,10 +3,22 @@ export default function transformTransactions(transactions: TransactionData, ema
   const monthly = transactions[email].monthly;
   const transactionList = transactions[email].transactions;
 
+  // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+  for (var x of months) {
+    result.push({
+      month: x,
+      Debit: 0,
+      Credit: 0,
+      Net: 0,
+    });
+  }
+  
   for (const transactionId in transactionList) {
     const transaction = transactionList[transactionId];
     const date = new Date(transaction.date);
-    const month = date.toLocaleString('default', { month: 'long' });
+    const month = date.toLocaleString('default', { month: 'short' });
     if (!result.find((t) => t.month === month)) {
       result.push({
         month,
@@ -20,6 +32,8 @@ export default function transformTransactions(transactions: TransactionData, ema
     const monthTransaction = result.find((t) => t.month === month)!;
     monthTransaction.Debit += debitAmount;
     monthTransaction.Credit += creditAmount;
+    monthTransaction.Net += (creditAmount - debitAmount);
   }
+
   return result;
 }

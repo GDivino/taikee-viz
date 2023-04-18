@@ -1,4 +1,4 @@
-import { Card, Title, DonutChart } from "@tremor/react";
+import { Card, Title, BarChart } from "@tremor/react";
 import transformByBank from "../func/transformByBank";
 import getData from "../func/getData";
 
@@ -15,8 +15,8 @@ export default function AssetsByBank(props: UserProp) {
   const chartData = transformByBank(data, props.user);
   return(
     <Card className="w-2/5">
-      <Title>Assets by Bank</Title>
-      <DonutChart
+      <Title>Assets Flow by Bank</Title>
+      {/* <DonutChart
         className="mt-6"
         data={chartData}
         category="Net"
@@ -24,6 +24,15 @@ export default function AssetsByBank(props: UserProp) {
         valueFormatter={valueFormatter}
         showLabel = {true}
         // colors={["cyan", "amber"]}
+      /> */}
+      <BarChart
+        className="mt-6"
+        data={chartData}
+        index="bank_code"
+        categories={["Debit", "Credit", "Net"]}
+        colors={["red", "green", "cyan"]}
+        valueFormatter={valueFormatter}
+        yAxisWidth={48}
       />
     </Card>
   )

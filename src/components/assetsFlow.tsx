@@ -10,14 +10,16 @@ const data = await getData();
 
 export default function AssetsFlow(props: UserProp) {
   const chartData = transformTransactions(data, props.user);
+
   return (
     <Card className="w-2/5">
-      <Title>Monthly Earnings and Spendings</Title>
+      <Title>Monthly Income and Expenses</Title>
       <AreaChart
         data={chartData}
         index="month"
-        categories={["Debit", "Credit"]}
-        colors={["red", "cyan"]}
+        categories={["Debit", "Credit", "Net"]}
+        colors={["red", "green", "cyan"]}
+        showLegend = {false}
         valueFormatter={dataFormatter}
       />
     </Card>
