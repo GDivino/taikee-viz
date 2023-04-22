@@ -15,17 +15,19 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
+      <div className='nav-container'>
         <Toggles user={user}/>
-      </nav>
+      </div>
       <div className="container-1">
         <TimeLeftCard user={user}/>
         <NetMoneyCard user={user}/>
       </div>
       <div className="container-2">
         <NetMoneyMonthly user={user}/>
-        <AssetsByBank user={user}/>
         <AssetsFlow user={user}/>
+      </div>
+      <div className="container-3">
+        <AssetsByBank user={user}/>
       </div>
     </div>
   )

@@ -19,16 +19,18 @@ export default function NetMoneyCard(props: UserProp) {
     }
   })
 
-  const dataFormatter = (number: number) => {
-    return "PHP " + Intl.NumberFormat("ph").format(number).toString();
-  };
+  const formatter = new Intl.NumberFormat('en-PH', {
+    style: 'currency',
+    currency: 'PHP',
+  });
+  
 
   return(
     <Card className="w-2/5" decoration="top" decorationColor="indigo">
       <Flex justifyContent="between" alignItems="center">
-        <Text>Monthly Income and Expenses</Text>
+        <Text>Total Money</Text>
       </Flex>
-      <Metric>{"PHP " + Intl.NumberFormat("ph").format(total).toString()}</Metric>
+      <Metric>{formatter.format(total).toString()}</Metric>
       <BadgeDelta
           deltaType={((last_month-prev_net)/prev_net)*100 > 0 ? "increase" : "decrease"}
           isIncreasePositive={((last_month-prev_net)/prev_net)*100  > 0 ? false : true}

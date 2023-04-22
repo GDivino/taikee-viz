@@ -16,8 +16,8 @@ export default function TimeLeftCard(props: UserProp) {
       <Text>Months Left to Achieve Goal</Text>
       <Metric>{goal_data[0].time_left > 0 ? goal_data[0].time_left : "Goal Achieved!" }</Metric> 
       <Flex>
-        <Text>PHP {formatter.format(goal_data[0].current)} &bull; {Math.round(goal_data[0].progress *100)/100}%</Text>
-        <Text>PHP {formatter.format(goal_data[0].goal)}</Text>
+        <Text>{formatter.format(goal_data[0].current)} &bull; {Math.round(goal_data[0].progress *100)/100}%</Text>
+        <Text>{formatter.format(goal_data[0].goal)}</Text>
       </Flex>
       <ProgressBar percentageValue={goal_data[0].progress} color="teal" className="mt-3" />
     </Card>
