@@ -3,7 +3,7 @@ import getData from "../func/getData"
 import transformTransactions from "../func/transformData";
 
 const dataFormatter = (number: number) => {
-  return "P " + Intl.NumberFormat("ph").format(number).toString();
+  return "PHP " + Intl.NumberFormat("ph").format(number).toString();
 };
 
 const data = await getData();
@@ -17,10 +17,11 @@ export default function AssetsFlow(props: UserProp) {
       <AreaChart
         data={chartData}
         index="month"
-        categories={["Debit", "Credit", "Net"]}
-        colors={["red", "green", "cyan"]}
+        categories={["Debit", "Credit"]}
+        colors={["red", "green"]}
         showLegend = {true}
         valueFormatter={dataFormatter}
+        // autoMinValue = {true}
       />
     </Card>
   )

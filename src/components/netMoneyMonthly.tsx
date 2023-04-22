@@ -1,10 +1,10 @@
-import { Card, Flex, Metric, BadgeDelta, Text, AreaChart, Title } from "@tremor/react";
+import { Card, Text, Flex, AreaChart, Title } from "@tremor/react";
 import transformTransactions from "../func/transformData";
 import getData from "../func/getData";
 
 const data = await getData();
 
-export default function NetMoneyCard(props: UserProp) {
+export default function NetMoneyMonthly(props: UserProp) {
   const chartData = transformTransactions(data, props.user);
   var total = 0;
   let count = 0;
@@ -26,15 +26,16 @@ export default function NetMoneyCard(props: UserProp) {
   return(
     <Card className="w-2/5" decoration="top" decorationColor="indigo">
       <Flex justifyContent="between" alignItems="center">
-        <Text>Monthly Income and Expenses</Text>
+        <Title>Total Money by Month</Title>
       </Flex>
-      <Metric>{"PHP " + Intl.NumberFormat("ph").format(total).toString()}</Metric>
-      <BadgeDelta
-          deltaType={((last_month-prev_net)/prev_net)*100 > 0 ? "increase" : "decrease"}
-          isIncreasePositive={((last_month-prev_net)/prev_net)*100  > 0 ? false : true}
-          size="xs"
-        > {Math.round(((last_month-prev_net)/prev_net)*100*100)/100}% from last month
-      </BadgeDelta>
+      <AreaChart
+        data={chartData}
+        index="month"
+        categories={["Net"]}
+        colors={["cyan"]}
+        showLegend = {true}
+        valueFormatter={dataFormatter}
+      />
     </Card>
   )
 };

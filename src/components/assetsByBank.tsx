@@ -16,15 +16,6 @@ export default function AssetsByBank(props: UserProp) {
   return(
     <Card className="w-2/5">
       <Title>Assets Flow by Bank</Title>
-      {/* <DonutChart
-        className="mt-6"
-        data={chartData}
-        category="Net"
-        index="bank_code"
-        valueFormatter={valueFormatter}
-        showLabel = {true}
-        // colors={["cyan", "amber"]}
-      /> */}
       <BarChart
         className="mt-6"
         data={chartData}
@@ -32,6 +23,7 @@ export default function AssetsByBank(props: UserProp) {
         categories={["Debit", "Credit", "Net"]}
         colors={["red", "green", "cyan"]}
         valueFormatter={valueFormatter}
+        layout="horizontal"
         yAxisWidth={48}
       />
     </Card>
